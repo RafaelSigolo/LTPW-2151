@@ -1,0 +1,20 @@
+p#banner{
+    width: 50%;
+    text-align: center;
+    margin-left: 250px;
+}
+p#historia{
+    width: 60%;
+    text-align: center;
+    margin-left: 220px;
+}
+#joinha{
+  margin: auto;
+}
+h1{
+    text-align: center;
+    color: #ED258F;
+}
+hr{
+    color: #ED258F;
+}
