@@ -1,0 +1,25 @@
+#produtos,#sobre,#fale{
+    min-height: 100vh;
+    padding: 4em;
+}
+
+#produtos{
+    background-color: royalblue;
+    color: white;
+}
+
+#sobre{
+    background-color: skyblue;
+    color: rgb(0, 0, 0);
+}
+
+#fale{
+    background-color: powderblue;
+}
+
+nav{
+    position: fixed;
+    margin-top: 0;
+    width: 100%;
+    z-index: 10000;
+}
