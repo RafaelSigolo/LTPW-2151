@@ -8,6 +8,10 @@
     color: white;
 }
 
+#produtos p, h5{
+    color: black;
+}
+
 #sobre{
     background-color: skyblue;
     color: rgb(0, 0, 0);
@@ -22,4 +26,16 @@ nav{
     margin-top: 0;
     width: 100%;
     z-index: 10000;
+}
+
+#produtos img{
+    max-height: 380px;
+}
+
+.card h5{
+    text-align: center;
+}
+
+h1{
+    margin-bottom: 1em;
 }
