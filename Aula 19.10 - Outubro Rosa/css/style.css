@@ -1,19 +1,24 @@
 p#banner{
-    width: 50%;
+    width: 100%;
     text-align: center;
-    margin-left: 250px;
 }
 p#historia{
-    width: 60%;
+    width: 100%;
     text-align: center;
-    margin-left: 220px;
 }
 #joinha{
   margin: auto;
+  width: 80vw;
+}
+#outrosa{
+    width: 50%;
+    margin: auto;
 }
 h1{
     text-align: center;
     color: #ED258F;
+    width: 100vw;
+    font-size: 200%;
 }
 hr{
     color: #ED258F;
