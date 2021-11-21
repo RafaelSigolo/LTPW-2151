@@ -16,6 +16,16 @@
     border-color: blueviolet;
 }
 
+.fin{
+    background-color: blueviolet;
+    border-color: blueviolet;
+    width: 100%;
+}
+.fin:hover{
+    background-color: rgb(91, 16, 161);
+    border-color: blueviolet;
+}
+
 footer{
     background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(95,9,121,1) 35%, rgba(152,79,255,1) 100%);
@@ -44,11 +54,83 @@ footer img{
     
 .navbar{
     position: fixed;
-    z-index: 9999999;
+    z-index: 999;
     width: 100%;
     transition: 0.5s;
 }
 
 .fa-cart-shopping{
     font-size: 200pt;
+}
+
+#carrinho{
+    position: absolute;
+    right: 0;
+    top:99%;
+    background-color: white;
+    display: none;
+    text-align: center;
+    max-height: 500px;
+    overflow-y: auto;
+    border-color: rgb(212, 212, 212);
+    border-style: solid;
+    border-width: 1px;
+}
+
+#carrinho table tr td{
+    padding: 20px;
+    width: 120px;
+}
+
+#carrinho table tr td.tirar{
+    padding: 10px;
+    width: 20px;
+}
+
+#carrinho table tr td input{
+    text-align: center;
+    width: 50px;
+}
+
+span.valor{
+    font-weight: 600;
+    font-size: 17pt;
+}
+
+p.pval{
+    font-weight: 800;
+}
+
+.carousel{
+    padding-top: 65px;
+}
+
+#quem{
+    padding: 80px;
+    font-size: 20pt;
+}
+
+
+form h3{
+    text-align: center;
+    color: white;
+    background-color: blueviolet;
+    border-radius: 20px;
+}
+
+form h4{
+    text-align: center;
+    color: blueviolet;
+}
+
+.form-check .form-check-label .circle .check{
+    background-color: blueviolet;
+}
+
+.form-check{
+    text-align: center;
+}
+
+.form-check-label{
+    margin-left: 20px;
 }

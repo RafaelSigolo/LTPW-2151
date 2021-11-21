@@ -16,6 +16,7 @@
     <nav id="nav" class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="container-fluid">
           <a class="navbar-brand" href="index.html" id="logo"><img width="100px" src="img/logo.png" alt=""></a>
+          
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -31,12 +32,25 @@
                 <a class="nav-link" aria-current="page" href="contato.html">Contato</a>
               </li>
             </div>
-                <div class="collapse navbar-collapse d-flex align-items-end flex-column">
+                <div onclick="mostrarcarrinho()" class="collapse navbar-collapse d-flex align-items-end flex-column">
                   <ul class="navbar-nav">
                     <li class="nav-item">
                       <a class="nav-link" aria-current="page"><i class="fas fa-shopping-cart"></i></a>
                     </li>
                   </ul>
+                </div>
+                <div id="carrinho">
+                  <table id="tabcar">
+                    <tr>
+                      <td>Produto</td>
+                      <td>Quantidade</td>
+                      <td>Valor</td>
+                    </tr>
+                  </table>
+                  <p>Valor Final: R$<output id="valorfinal">0</output></p>
+                  <button type="button" class="btn btn-primary fin" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                     Finalizar Compra
+                  </button>
                 </div>
             </ul>
           
@@ -52,13 +66,13 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="img/teste.jpg" class="d-block w-100"  alt="...">
+            <img src="img/slide1.png" class="d-block w-100"  alt="...">
           </div>
           <div class="carousel-item">
-            <img src="img/teste.jpg" class="d-block w-100" alt="...">
+            <img src="img/slide2.png" class="d-block w-100" alt="...">
           </div>
           <div class="carousel-item">
-            <img src="img/teste.jpg" class="d-block w-100" alt="...">
+            <img src="img/slide3.png" class="d-block w-100" alt="...">
           </div>
         </div>
         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -72,72 +86,243 @@
       </div>
 
       <!--Conteúdo-->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Finalizar compra</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div id="form">
+                <form action="envio.html" name="formulario" onsubmit="return finalizar()">
+                  <h3>Dados de Acesso</h3>
+                    <br>
+                  <div class="mb-3">
+                    <div class="form-group row has-danger">
+                      <label for="login" class="form-label">Login</label>
+                      <input type="text" class="form-control" id="login" placeholder="Nome do usuário" required>
+                    </div>
+                    <div class="form-group row has-danger">
+                      <label for="senha" class="form-label">Senha</label>
+                      <input type="password" class="form-control" id="senha" placeholder="Senha do usuário" required>
+                    </div>
+                    <div class="form-group row has-danger">
+                      <label for="confsenha" class="form-label">Confirmar Senha</label>
+                      <input type="password" class="form-control" id="confsenha" placeholder="Confirmar Senha do usuário" required>
+                    </div>
+                  </div>
+                  <br>
+                  <h3>Dados de Pagamento</h3>
+                  <br>
+                  <div class="mb-3">
+                    <div class="form-check">
+                      <h4>Tipo de Acesso:</h4> <br>
+                      <label class="form-check-label">
+                        <input onchange="pessoa('pf')" class="form-check-input danger" type="radio" name="Radio" id="radio1" value="option2" checked="">
+                        Pessoa Física
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                      <label class="form-check-label">
+                        <input onchange="pessoa('pj')" class="form-check-input danger" type="radio" name="Radio" id="radio2" value="option2">
+                        Pessoa Jurídica
+                        <span class="circle">
+                          <span class="check"></span>
+                        </span>
+                      </label>
+                    </div>
+                  </div>
+              <br>
+                  <div class="mb-3">
+                    <div class="form-group row has-danger" id="cpf">
+                      <label for="CPF" class="form-label">CPF</label>
+                      <input type="text" class="form-control" id="CPF" placeholder="xxx.xxx.xxx-xx">
+                    </div>
+              
+                    <div class="form-group row has-danger" id="cnpj" style="display: none;">
+                      <label for="CNPJ" class="form-label">CNPJ</label>
+                      <input type="text" class="form-control" id="CNPJ" placeholder="xx.xxx.xxx/xxxx-xx">
+                    </div>
+              
+                    <div class="form-group row has-danger">
+                      <label for="Telefone" class="form-label">Telefone</label>
+                      <input type="text" class="form-control" id="telefone" placeholder="(xx)xxxx-xxxx" required>
+                    </div>
+                  </div>
+              
+                  <div class="form-row align-items-center">
+                    <div class="col-auto my-1">
+                      <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
+                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" onchange="metodo(this)">
+                        <option selected value="dinheiro">Dinheiro</option>
+                        <option value="cartao">Cartão</option>
+                        <option value="cheque">Cheque</option>
+                      </select>
+                    </div>
+                  </div>
+              
+                  <div id="cart" style="display: none;">
+                  <h3>Cartão</h3>
+              
+                  <div class="mb-3">
+                    <div class="form-group row has-danger" id="ncart">
+                      <label for="ncart" class="form-label">Nº do Cartão</label>
+                      <input type="text" class="form-control" id="ncart" placeholder="">
+                    </div>
+              
+                    <div class="form-group row has-danger" id="codseg">
+                      <label for="codseg" class="form-label">Código de Segurança</label>
+                      <input type="text" class="form-control" id="codseg" placeholder="">
+                    </div>
+              
+                    <div class="form-group row has-danger">
+                      <label for="venc" class="form-label">Vencimento</label>
+                      <input type="text" class="form-control" id="venc">
+                    </div>
+                  </div>
+                </div>
+                  <br>
+                  <div>
+                    <div id="produtos"></div>
+                    Valor Final: R$<output id="valfinform">0,00</output>
+                  </div>
+                  <button onclick="finalizar()" type="submit" class="btn btn-danger fin" style="float: right;">Finalizar</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="container">
         <div class="row">
             <div class="col-md-4 col-sm-12">
                 <div class="card" style="width: 18rem;">
-                    <img src="img/camiseta.jpg" class="card-img-top" alt="...">
+                    <img src="img/prod1.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title" id="prod1">Camiseta Listrada Lacraste</h5>
+                      <p class="card-text">Camiseta Tamanho M</p>
+                      <p class="pval">R$ <span class="valor" id="val1">70.00</span></p>
+                      <a onclick="addcar(1)" class="btn btn-primary">Adicionar ao carrinho</a>
                     </div>
                   </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="card" style="width: 18rem;">
-                  <img src="img/camiseta.jpg" class="card-img-top" alt="...">
+                  <img src="img/prod2.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title" id="prod2">Blusa Cinza Lacraste</h5>
+                      <p class="card-text">Blusa Tamanho M</p>
+                      <p class="pval">R$ <span class="valor" id="val2">79.90</span></p>
+                      <a onclick="addcar(2)" class="btn btn-primary">Adicionar ao carrinho</a>
                     </div>
                   </div>
             </div>
             <div class="col-md-4 col-sm-12">
                 <div class="card" style="width: 18rem;">
-                  <img src="img/camiseta.jpg" class="card-img-top" alt="...">
+                  <img src="img/prod3.jpg" class="card-img-top" alt="...">
                     <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
+                      <h5 class="card-title" id="prod3">Camiseta Cinza Lacraste</h5>
+                      <p class="card-text">Camiseta Tamanho M</p>
+                      <p class="pval">R$ <span class="valor" id="val3">69.90</span></p>
+                      <a onclick="addcar(3)" class="btn btn-primary">Adicionar ao carrinho</a>
                     </div>
                   </div>
             </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                  <img src="img/prod4.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title" id="prod4">Camiseta Preta Lacraste</h5>
+                      <p class="card-text">Camiseta Tamanho G</p>
+                      <p class="pval">R$ <span class="valor" id="val4">75.90</span></p>
+                      <a onclick="addcar(4)" class="btn btn-primary">Adicionar ao carrinho</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                  <img src="img/prod5.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title" id="prod5">Blusa Cinza Lacraste</h5>
+                      <p class="card-text">Blusa tamanho G</p>
+                      <p class="pval">R$ <span class="valor" id="val5">84.90</span></p>
+                      <a onclick="addcar(5)" class="btn btn-primary">Adicionar ao carrinho</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <div class="card" style="width: 18rem;">
+                  <img src="img/prod6.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title" id="prod6">Blusa Rosa Lacraste</h5>
+                      <p class="card-text">Blusa tamanho G</p>
+                      <p class="pval">R$ <span class="valor" id="val6">84.90</span></p>
+                      <a onclick="addcar(6)" class="btn btn-primary">Adicionar ao carrinho</a>
+                    </div>
+                  </div>
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="card" style="width: 18rem;">
+                <img src="img/prod7.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title" id="prod7">Blusa Branca Lacraste</h5>
+                    <p class="card-text">Blusa tamanho PP</p>
+                    <p class="pval">R$ <span class="valor" id="val7">49.90</span></p>
+                    <a onclick="addcar(7)" class="btn btn-primary">Adicionar ao carrinho</a>
+                  </div>
+                </div>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <div class="card" style="width: 18rem;">
+              <img src="img/prod8.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" id="prod8">Blusa Azul-Marinho Lacraste</h5>
+                  <p class="card-text">Blusa tamanho PP</p>
+                  <p class="pval">R$ <span class="valor" id="val8">49.90</span></p>
+                  <a onclick="addcar(8)" class="btn btn-primary">Adicionar ao carrinho</a>
+                </div>
+              </div>
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <div class="card" style="width: 18rem;">
+              <img src="img/prod9.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" id="prod9">Blusa Verde Lacraste</h5>
+                  <p class="card-text">Blusa tamanho PP</p>
+                  <p class="pval">R$ <span class="valor" id="val9">49.90</span></p>
+                  <a onclick="addcar(9)" class="btn btn-primary">Adicionar ao carrinho</a>
+                </div>
+              </div>       
+          </div>
+          <div class="col-md-4 col-sm-12">
+            <div class="card" style="width: 18rem;">
+              <img src="img/prod10.jpg" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title" id="prod10">Blusa Branca Lacraste</h5>
+                  <p class="card-text">Blusa Tamanho PP</p>
+                  <p class="pval">R$ <span class="valor" id="val10">49.90</span></p>
+                  <a onclick="addcar(10)" class="btn btn-primary">Adicionar ao carrinho</a>
+                </div>
+              </div>       
+            </div>
+            <div class="col-md-4 col-sm-12">
+              <div class="card" style="width: 18rem;">
+                <img src="img/prod11.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title" id="prod11">Camiseta Preta</h5>
+                    <p class="card-text">Camiseta Tamanho P</p>
+                    <p class="pval">R$ <span class="valor" id="val11">59.90</span></p>
+                    <a onclick="addcar(11)" class="btn btn-primary">Adicionar ao carrinho</a>
+                  </div>
+                </div>       
+          </div>
         </div>
-        <div class="row">
-            <div class="col-md-4 col-sm-12">
-                <div class="card" style="width: 18rem;">
-                  <img src="img/camiseta.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="card" style="width: 18rem;">
-                  <img src="img/camiseta.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-            </div>
-            <div class="col-md-4 col-sm-12">
-                <div class="card" style="width: 18rem;">
-                  <img src="img/camiseta.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                      <h5 class="card-title">Card title</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-primary">Go somewhere</a>
-                    </div>
-                  </div>
-            </div>
         </div>
-    </div>
+        <!--form-->
+      
+        
 
     <!-- Footer -->
     <footer>
