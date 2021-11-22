@@ -146,3 +146,14 @@ form div div label{
 .modal-body{
     padding: 50px;
 }
+
+.alert{
+    text-align: center;
+    color: red;
+    font-size: 40pt;
+}
+
+#aviso{
+    width: 100%;
+    text-align: center;
+}

@@ -6,6 +6,39 @@ function contmodal(){
     if(valfina > 0){
         document.getElementById("form").style.display = "block"
         document.getElementById("aviso").style.display = "none"
+    }else{
+        document.getElementById("form").style.display = "none"
+        document.getElementById("aviso").style.display = "block"
+    }
+}
+
+function mascaracpf(n){
+    if(n.value.length == 3){
+        n.value += "."
+    }else if(n.value.length == 7){
+        n.value += "."
+    }else if(n.value.length == 11){
+        n.value += "-"
+    }
+}
+
+function mascaracnpj(n){
+    if(n.value.length == 2){
+        n.value += "."
+    }else if(n.value.length == 6){
+        n.value += "."
+    }else if(n.value.length == 10){
+        n.value += "/"
+    }
+}
+
+function masctelefone(n){
+    if(n.value.length == 0){
+        n.value += "("
+    }else if(n.value.length == 3){
+        n.value += ")"
+    }else if(n.value.length == 8){
+        n.value += "-"
     }
 }
 
