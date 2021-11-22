@@ -94,6 +94,11 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+              <div id="aviso">
+                <h3>
+                  Adicione um produto primeiro!
+                </h3>
+              </div>
               <div id="form">
                 <form action="envio.html" name="formulario" onsubmit="return finalizar()">
                   <h3>Dados de Acesso</h3>
@@ -155,7 +160,7 @@
                   <div class="form-row align-items-center">
                     <div class="col-auto my-1">
                       <label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-                      <select class="custom-select mr-sm-2" id="inlineFormCustomSelect" onchange="metodo(this)">
+                      <select class="custom-select mr-sm-2 form-select" id="inlineFormCustomSelect" onchange="metodo(this)">
                         <option selected value="dinheiro">Dinheiro</option>
                         <option value="cartao">Cartão</option>
                         <option value="cheque">Cheque</option>
@@ -176,7 +181,7 @@
                       <label for="codseg" class="form-label">Código de Segurança</label>
                       <input type="text" class="form-control" id="codseg" placeholder="">
                     </div>
-              
+                    
                     <div class="form-group row has-danger">
                       <label for="venc" class="form-label">Vencimento</label>
                       <input type="text" class="form-control" id="venc">
@@ -185,7 +190,6 @@
                 </div>
                   <br>
                   <div>
-                    <div id="produtos"></div>
                     Valor Final: R$<output id="valfinform">0,00</output>
                   </div>
                   <button onclick="finalizar()" type="submit" class="btn btn-danger fin" style="float: right;">Finalizar</button>

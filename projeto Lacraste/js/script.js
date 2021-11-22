@@ -2,6 +2,14 @@ let scrollant = 0
 let valfina = 0
 let arqnt = []
 
+function contmodal(){
+    if(valfina > 0){
+        document.getElementById("form").style.display = "block"
+        document.getElementById("aviso").style.display = "none"
+    }
+}
+
+
 function salvqnt(){
     for (let index = 1; index < 11; index++) {
         
@@ -29,6 +37,7 @@ function atfin(){
         }
         valfinf = parseFloat(valfina).toFixed(2)
         document.getElementById("valorfinal").value = valfinf
+        document.getElementById("valfinform").value = valfinf
 }
 
 function fecharnavbar(){
@@ -65,6 +74,7 @@ function addcar(n){
     arqnt[n] = 1
     atfin()
     conserta()
+    contmodal()
 }
 }
 
@@ -74,6 +84,7 @@ function tirar(n){
     elemento = document.getElementById(`tr${n}`)
     elemento.parentNode.removeChild(elemento)
     atfin()
+    contmodal()
 }
 
 function verificaigual(id){
@@ -95,3 +106,20 @@ function calc(n){
     atfin()
 }
 
+function metodo(met){
+    if(met.value == 'cartao'){
+        document.getElementById('cart').style.display = "block"
+    }else{
+        document.getElementById('cart').style.display = "none"
+    }
+}
+
+function pessoa(p){
+    if(p == 'pf'){
+        document.getElementById("cpf").style.display = "block"
+        document.getElementById("cnpj").style.display = "none"
+    }else{
+        document.getElementById("cpf").style.display = "none"
+        document.getElementById("cnpj").style.display = "block"
+    }
+}
