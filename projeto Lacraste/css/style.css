@@ -157,3 +157,22 @@ form div div label{
     width: 100%;
     text-align: center;
 }
+
+.valfinform{
+    font-size: 15pt;
+    font-weight: 600;
+}
+
+#envio{
+    text-align: center;
+    margin-top: 15%;
+}
+
+#envio i{
+    font-size: 80pt;
+}
+
+#avisosenha{
+    color: red;
+    display: none;
+}

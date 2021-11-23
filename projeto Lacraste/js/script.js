@@ -29,6 +29,8 @@ function mascaracnpj(n){
         n.value += "."
     }else if(n.value.length == 10){
         n.value += "/"
+    }else if(n.value.length == 15){
+        n.value += "-"
     }
 }
 
@@ -36,12 +38,27 @@ function masctelefone(n){
     if(n.value.length == 0){
         n.value += "("
     }else if(n.value.length == 3){
-        n.value += ")"
-    }else if(n.value.length == 8){
+        n.value += ") "
+    }else if(n.value.length == 9){
         n.value += "-"
     }
 }
 
+function masccartao(n){
+    if(n.value.length == 4){
+        n.value += " "
+    }else if(n.value.length == 9){
+        n.value += " "
+    }else if(n.value.length == 14){
+        n.value += " "
+    }
+}
+
+function venccartao(n){
+    if(n.value.length == 2){
+        n.value += "/"
+    }
+}
 
 function salvqnt(){
     for (let index = 1; index < 11; index++) {
@@ -154,5 +171,24 @@ function pessoa(p){
     }else{
         document.getElementById("cpf").style.display = "none"
         document.getElementById("cnpj").style.display = "block"
+    }
+}
+
+function finalizar(){
+    senha = document.getElementById("senha").value
+    senha2 = document.getElementById("confsenha").value
+    if(senha != senha2){
+        document.getElementById("senha").focus()
+        return false
+    }
+}
+
+function confirmarsenha(){
+    senha = document.getElementById("senha").value
+    senha2 = document.getElementById("confsenha").value
+    if(senha != senha2){
+        document.getElementById("avisosenha").style.display = "block"
+    }else{
+        document.getElementById("avisosenha").style.display = "none"
     }
 }

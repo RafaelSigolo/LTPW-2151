@@ -111,12 +111,13 @@
                     </div>
                     <div class="form-group row has-danger">
                       <label for="senha" class="form-label">Senha</label>
-                      <input type="password" class="form-control" id="senha" placeholder="Senha do usuário" required>
+                      <input type="password" onkeyup="confirmarsenha()" class="form-control" id="senha" placeholder="Senha do usuário" required>
                     </div>
                     <div class="form-group row has-danger">
                       <label for="confsenha" class="form-label">Confirmar Senha</label>
-                      <input type="password" class="form-control" id="confsenha" placeholder="Confirmar Senha do usuário" required>
+                      <input type="password" onkeyup="confirmarsenha()" class="form-control" id="confsenha" placeholder="Confirmar Senha do usuário" required>
                     </div>
+                    <div id="avisosenha">As senhas estão diferentes!</div>
                   </div>
                   <br>
                   <h3>Dados de Pagamento</h3>
@@ -149,12 +150,12 @@
               
                     <div class="form-group row has-danger" id="cnpj" style="display: none;">
                       <label for="CNPJ" class="form-label">CNPJ</label>
-                      <input type="text" class="form-control" id="CNPJ" placeholder="xx.xxx.xxx/xxxx-xx" onkeydown="mascaracnpj(this)" maxlength="13">
+                      <input type="text" class="form-control" id="CNPJ" placeholder="xx.xxx.xxx/xxxx-xx" onkeydown="mascaracnpj(this)" maxlength="18">
                     </div>
               
                     <div class="form-group row has-danger">
                       <label for="Telefone" class="form-label">Telefone</label>
-                      <input type="text" class="form-control" id="telefone" placeholder="(xx)xxxx-xxxx" onkeydown="masctelefone(this)" maxlength="13" required>
+                      <input type="text" class="form-control" id="telefone" placeholder="(xx) xxxx-xxxx" onkeydown="masctelefone(this)" maxlength="14" required>
                     </div>
                   </div>
               
@@ -175,24 +176,25 @@
                   <div class="mb-3">
                     <div class="form-group row has-danger" id="ncart">
                       <label for="ncart" class="form-label">Nº do Cartão</label>
-                      <input type="text" class="form-control" id="ncart" placeholder="">
+                      <input type="text" class="form-control" onkeydown="masccartao(this)" maxlength="19" id="ncart" placeholder="">
                     </div>
               
                     <div class="form-group row has-danger" id="codseg">
                       <label for="codseg" class="form-label">Código de Segurança</label>
-                      <input type="text" class="form-control" id="codseg" placeholder="">
+                      <input type="text" class="form-control" id="codseg" placeholder="" maxlength="3">
                     </div>
                     
                     <div class="form-group row has-danger">
                       <label for="venc" class="form-label">Vencimento</label>
-                      <input type="text" class="form-control" id="venc">
+                      <input type="text" class="form-control" id="venc" maxlength="5" onkeydown="venccartao(this)">
                     </div>
                   </div>
                 </div>
                   <br>
-                  <div>
+                  <div class="valfinform">
                     Valor Final: R$<output id="valfinform">0,00</output>
                   </div>
+                  <br>
                   <button onclick="finalizar()" type="submit" class="btn btn-danger fin" style="float: right;">Finalizar</button>
                 </form>
               </div>
